@@ -1,6 +1,6 @@
-const ContactRow = ({contact}) => {
+const ContactRow = ({contact, setSelected}) => {
 	return (
-	<tr>
+	<tr onClick={() => {setSelected(contact.id)}}>
 		<td>{contact.name}</td>
 		<td>{contact.email}</td>
 		<td>{contact.phone}</td>

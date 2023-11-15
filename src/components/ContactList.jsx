@@ -9,7 +9,7 @@ const dummyContacts = [
 
 const API_URL = `https://fsa-jsonplaceholder-69b5c48f1259.herokuapp.com/users`;
 
-const ContactList = () => {
+const ContactList = ({setSelected}) => {
 	const [contacts, setContacts] = useState(dummyContacts);
 
 	useEffect(() => {
@@ -18,7 +18,6 @@ const ContactList = () => {
 				const response = await fetch(API_URL);
 				const json = await response.json();
 				setContacts(json);
-				console.log(contacts);
 			}
 			catch(error) {
 				console.log(`OH NO: ${error}`);
@@ -42,9 +41,9 @@ const ContactList = () => {
 					<td>Phone</td>
 				</tr>
 				{
-					dummyContacts.map((contact) => {
+					contacts.map((contact) => {
 						return (
-						<ContactRow contact={contact} key={`Contact` + contact.id}></ContactRow>
+						<ContactRow contact={contact} setSelected={setSelected} key={`Contact` + contact.id}></ContactRow>
 						);
 					})
 				}
